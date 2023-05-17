@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ColorPalette {
-  static const Color primaryColor = Color(0xff6155CC);
+  static const Color primaryColor = Color(0xffFFFFFF);
+  static const Color buttonColor = Color(0xff2D3648);
+  static const Color loginButtonColor = Color.fromARGB(255, 80, 183, 239);
+
   static const Color secondColor = Color(0xff8F678E);
   static const Color yellowColor = Color(0xffFE9C5E);
 
