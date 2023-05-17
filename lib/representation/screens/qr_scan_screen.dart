@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class QRScanScreen extends StatefulWidget {
   const QRScanScreen({super.key});
@@ -15,6 +16,15 @@ class _QRScanScreenState extends State<QRScanScreen> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   Barcode? result;
   QRViewController? controller;
+
+  launchUrlButton(String? url) async {
+    Uri uri = Uri.parse(url ?? "");
+    try {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   void reassemble() {
@@ -89,14 +99,55 @@ class _QRScanScreenState extends State<QRScanScreen> {
       );
 
   Widget buildResult() => Container(
+        width: MediaQuery.of(context).size.width * 0.9,
+        height: MediaQuery.of(context).size.height * 0.2,
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Text(
-          result != null ? "Scan result: ${result?.code}" : "Scan a code",
-          maxLines: 3,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Result",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: GestureDetector(
+                child: Container(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Center(
+                    child: Text(
+                      result != null ? "Go to Url" : "Scan a code",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                onTap: () {
+                  if (result != null) {
+                    // check if the result is a url
+                    if (result?.code?.contains("http") == false) {
+                      return;
+                    }
+                    launchUrlButton(result?.code);
+                  }
+                },
+              ),
+            ),
+          ],
         ),
       );
 
