@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:pointify_partner_customer/core/helpers/asset_helper.dart';
 import 'package:pointify_partner_customer/core/helpers/image_helper.dart';
 import 'package:pointify_partner_customer/representation/screens/intro_screen.dart';
 
 import '../../core/constants/color_constant.dart';
-import '../../core/helpers/local_storage_helper.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

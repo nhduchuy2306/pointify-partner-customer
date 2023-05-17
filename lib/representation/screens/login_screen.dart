@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:pointify_partner_customer/core/constants/color_constant.dart';
 import 'package:pointify_partner_customer/representation/screens/home_screen.dart';
 import 'package:simple_text_form_field/simple_text_form_field.dart';
