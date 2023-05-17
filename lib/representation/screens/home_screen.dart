@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:pointify_partner_customer/core/constants/color_constant.dart';
-import 'package:pointify_partner_customer/representation/screens/discount_screen.dart';
-import 'package:pointify_partner_customer/representation/screens/history_screen.dart';
-import 'package:pointify_partner_customer/representation/screens/home_screen_item.dart';
-import 'package:pointify_partner_customer/representation/screens/notification_screen.dart';
-import 'package:pointify_partner_customer/representation/screens/profile_screen.dart';
-import 'package:pointify_partner_customer/representation/screens/qr_scan_screen.dart';
-import 'package:pointify_partner_customer/representation/widgets/drawer_widget.dart';
+import '../../core/constants/color_constant.dart';
+import '../widgets/drawer_widget.dart';
+import 'discount_screen.dart';
+import 'history_screen.dart';
+import 'home_screen_item.dart';
+import 'notification_screen.dart';
+import 'profile_screen.dart';
+import 'qr_scan_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,6 +24,14 @@ class _HomeScreenState extends State<HomeScreen> {
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 
+  late String _appBarTitle;
+
+  @override
+  void initState() {
+    _appBarTitle = _appBarTitles()[0];
+    super.initState();
+  }
+
   List<Widget> _buildScreens() {
     return [
       HomeScreenItem(),
@@ -31,6 +39,16 @@ class _HomeScreenState extends State<HomeScreen> {
       Page3(),
       DiscountScreen(),
       ProfileScreen(),
+    ];
+  }
+
+  List<String> _appBarTitles() {
+    return [
+      "Home",
+      "History",
+      "QR Code",
+      "Discount",
+      "Profile",
     ];
   }
 
@@ -56,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: ("QR Code"),
         activeColorPrimary: Colors.blue,
         inactiveColorPrimary: Colors.grey,
-        onPressed: (q0) {
+        onPressed: (_) {
           Navigator.push(
               context,
               PageTransition(
@@ -85,22 +103,33 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorPalette.buttonColor,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            GestureDetector(
+        title: Center(
+          child: Text(
+            _appBarTitle,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        actions: [
+          Container(
+            margin: EdgeInsets.only(right: 20),
+            child: GestureDetector(
               onTap: () {
                 Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.rightToLeft,
-                      child: NotificationScreen(),
-                    ));
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: NotificationScreen(),
+                  ),
+                );
               },
               child: Icon(FontAwesomeIcons.bell),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       drawer: DrawerWidget(),
       body: PersistentTabView(
@@ -131,8 +160,12 @@ class _HomeScreenState extends State<HomeScreen> {
           curve: Curves.ease,
           duration: Duration(milliseconds: 200),
         ),
-        navBarStyle:
-            NavBarStyle.style15, // Choose the nav bar style with this property.
+        navBarStyle: NavBarStyle.style15,
+        onItemSelected: (value) {
+          setState(() {
+            _appBarTitle = _appBarTitles()[value];
+          });
+        },
       ),
     );
   }

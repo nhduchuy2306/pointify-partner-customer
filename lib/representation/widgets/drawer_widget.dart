@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import '../../core/constants/color_constant.dart';
+import '../screens/qr_scan_screen.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -15,7 +17,7 @@ class DrawerWidget extends StatelessWidget {
               color: ColorPalette.buttonColor,
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CircleAvatar(
                   radius: 30,
@@ -58,7 +60,13 @@ class DrawerWidget extends StatelessWidget {
             leading: Icon(Icons.qr_code),
             title: Text("QR Code"),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                PageTransition(
+                  type: PageTransitionType.fade,
+                  child: QRScanScreen(),
+                ),
+              );
             },
           ),
           ListTile(
@@ -68,6 +76,20 @@ class DrawerWidget extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text("Settings"),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text("Logout"),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          )
         ],
       ),
     );

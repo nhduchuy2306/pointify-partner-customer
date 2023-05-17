@@ -4,6 +4,7 @@ import 'package:pointify_partner_customer/representation/screens/history_screen.
 import 'package:pointify_partner_customer/representation/screens/home_screen.dart';
 import 'package:pointify_partner_customer/representation/screens/intro_screen.dart';
 import 'package:pointify_partner_customer/representation/screens/login_screen.dart';
+import 'package:pointify_partner_customer/representation/screens/profile_screen.dart';
 import 'package:pointify_partner_customer/representation/screens/qr_scan_screen.dart';
 import 'package:pointify_partner_customer/representation/screens/splash_screen.dart';
 
@@ -15,4 +16,5 @@ final Map<String, WidgetBuilder> routes = {
   QRScanScreen.routeName: (context) => const QRScanScreen(),
   HistoryScreen.routeName: (context) => const HistoryScreen(),
   DiscountScreen.routeName: (context) => const DiscountScreen(),
+  ProfileScreen.routeName: (context) => const ProfileScreen(),
 };

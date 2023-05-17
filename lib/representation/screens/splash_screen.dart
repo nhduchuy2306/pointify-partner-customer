@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:pointify_partner_customer/core/helpers/asset_helper.dart';
 import 'package:pointify_partner_customer/core/helpers/image_helper.dart';
 import 'package:pointify_partner_customer/representation/screens/intro_screen.dart';
@@ -23,7 +24,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void redirectHomeScreen() {
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, IntroScreen.routeName);
+      Navigator.push(
+        context,
+        PageTransition(
+          duration: const Duration(milliseconds: 500),
+          child: IntroScreen(),
+          type: PageTransitionType.bottomToTop,
+        ),
+      );
     });
   }
 

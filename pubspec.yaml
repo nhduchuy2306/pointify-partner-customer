@@ -40,6 +40,8 @@ dependencies:
   simple_text_form_field: ^0.0.1
   page_transition: "^2.0.9"
   persistent_bottom_nav_bar: ^5.0.2
+  qr_code_scanner: ^1.0.1
+  url_launcher: ^6.1.11
 
 dev_dependencies:
   flutter_test:
