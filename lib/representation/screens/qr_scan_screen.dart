@@ -39,7 +39,6 @@ class _QRScanScreenState extends State<QRScanScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
       body: Stack(
         alignment: Alignment.center,
         children: [
