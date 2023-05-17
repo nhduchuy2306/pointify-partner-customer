@@ -6,8 +6,10 @@ import 'package:pointify_partner_customer/core/constants/color_constant.dart';
 import 'package:pointify_partner_customer/representation/screens/discount_screen.dart';
 import 'package:pointify_partner_customer/representation/screens/history_screen.dart';
 import 'package:pointify_partner_customer/representation/screens/home_screen_item.dart';
+import 'package:pointify_partner_customer/representation/screens/notification_screen.dart';
 import 'package:pointify_partner_customer/representation/screens/profile_screen.dart';
 import 'package:pointify_partner_customer/representation/screens/qr_scan_screen.dart';
+import 'package:pointify_partner_customer/representation/widgets/drawer_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -82,22 +84,25 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         backgroundColor: ColorPalette.buttonColor,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             GestureDetector(
-              onTap: () {},
-              child: Icon(FontAwesomeIcons.bars),
-            ),
-            GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: NotificationScreen(),
+                    ));
+              },
               child: Icon(FontAwesomeIcons.bell),
             ),
           ],
         ),
       ),
+      drawer: DrawerWidget(),
       body: PersistentTabView(
         context,
         controller: _controller,
