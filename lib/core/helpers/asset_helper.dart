@@ -6,4 +6,6 @@ class AssetHelper {
   static const String imageIntro3 = "assets/images/intro3.png";
   static const String oval1 = "assets/images/Oval.png";
   static const String oval2 = "assets/images/Oval2.png";
+
+  static const String googleIcon = "assets/icons/google.png";
 }

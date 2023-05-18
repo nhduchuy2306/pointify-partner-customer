@@ -5,6 +5,8 @@ class ColorPalette {
   static const Color buttonColor = Color(0xff2D3648);
   static const Color loginButtonColor = Color.fromARGB(255, 80, 183, 239);
 
+  // static const Color backgroundColor = Color(0xff2492FF);
+
   static const Color secondColor = Color(0xff8F678E);
   static const Color yellowColor = Color(0xffFE9C5E);
 

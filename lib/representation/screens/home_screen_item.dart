@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pointify_partner_customer/models/Transaction_model.dart';
 import 'package:pointify_partner_customer/representation/widgets/action_tab_widget.dart';
 import 'package:pointify_partner_customer/representation/widgets/tab_widget.dart';
 import 'package:pointify_partner_customer/representation/widgets/transaction_widget.dart';
@@ -16,6 +17,35 @@ class HomeScreenItem extends StatefulWidget {
 
 class _HomeScreenItemState extends State<HomeScreenItem> {
   final ScrollController _scrollController = ScrollController();
+
+  var transaction = {
+    {
+      "text": "Netflix 1",
+      "payValue": 35.50,
+    },
+    {
+      "text": "Netflix 2",
+      "payValue": 36.50,
+    },
+    {
+      "text": "Netflix 3",
+      "payValue": 37.50,
+    },
+    {
+      "text": "Netflix 4",
+      "payValue": 38.50,
+    },
+    {
+      "text": "Netflix 5",
+      "payValue": 39.50,
+    },
+  };
+
+  void loadJson() {
+    transaction.forEach((element) {
+      TransactionModel.fromJson(element);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
